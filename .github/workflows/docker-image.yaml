@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
     paths:
       - 'tabbyapi-latest-commit-sha.txt'
+  workflow_dispatch:
 
 env:
   IMAGE_NAME: alexbrown001/tabbyapi
