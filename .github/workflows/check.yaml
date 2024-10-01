@@ -2,7 +2,7 @@ name: Check for new commits
 on:
   schedule:
     - cron: "24,54 * * * *"
-  workflow_dispatch:  # This enables manual triggering
+  workflow_dispatch:
 
 jobs:
   get-version:
