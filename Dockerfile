@@ -75,7 +75,11 @@ RUN if [ ${DO_PULL} ]; then \
 RUN pip install --no-cache-dir .[cu121]
 
 # Create a config.yml
-RUN cp -av config_sample.yml config.yml
+RUN if [ -f config.yml.bak ]; then \
+    cp config.yml.bak config.yml; \
+    else \
+    cp config_sample.yml config.yml; \
+    fi
 
 # Make port 5000 and 22 available to the world outside this container
 EXPOSE 5000 22
