@@ -7,7 +7,7 @@ on:
       - 'tabbyapi-latest-commit-sha.txt'
 
 env:
-  IMAGE_NAME: nschle/tabbyapi
+  IMAGE_NAME: alexbrown001/tabbyapi
 
 jobs:
   build:
