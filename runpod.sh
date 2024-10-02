@@ -33,6 +33,9 @@ ln -sfv /app/restart.sh /app/start.sh
 
 # Move config.yml to the persistent storage
 mv -v /app/config.yml /app/models
+if [ -n "${DEFAULT_CONFIG_YML}" ]; then
+    cp "${DEFAULT_CONFIG_YML}" /app/models/config.yml
+fi
 ln -sfv /app/models/config.yml /app/config.yml
 
 echo "Starting tabbyAPI..."
