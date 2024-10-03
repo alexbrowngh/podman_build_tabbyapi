@@ -20,7 +20,7 @@
 #
 # The script will process this string to:
 #   1. Set the download path: "bartowski/Mistral-7B-Instruct-v0.3-exl2"
-#   2. Set the local directory: "models/bartowski_Mistral-7B-Instruct-v0.3-exl2-4_25"
+#   2. Set the local directory: "/app/models/bartowski_Mistral-7B-Instruct-v0.3-exl2-4_25"
 #   3. Set the revision: "4_25"
 #
 # Example usage:
