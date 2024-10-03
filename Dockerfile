@@ -87,6 +87,7 @@ RUN pip install --no-cache-dir hf_transfer huggingface-hub[cli]
 WORKDIR /
 COPY --chmod=755 runpod.sh /runpod.sh
 COPY --chmod=755 restart.sh /app/restart.sh
+COPY --chmod=755 model_downloader.sh /app/model_downloader.sh
 
 # Make tabbyAPI available for Cloudflare access
 # FIXME: Get rid of sed, use something else.
