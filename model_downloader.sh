@@ -40,7 +40,7 @@ fi
 
 input_string="$1"
 
-local_dir="models/$input_string"
+local_dir="/app/models/$input_string"
 
 revision=$(echo "$input_string" | rev | cut -d'-' -f1 | rev)
 
