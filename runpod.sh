@@ -52,6 +52,12 @@ else
 fi
 ln -sfv /app/models/config.yml /app/config.yml
 
+# Dowload the default api_tokens.yml to the persistent storage if DEFAULT_API_TOKENS_YML is set.
+if [ -n "$DEFAULT_API_TOKENS_YML" ]; then
+    wget "$DEFAULT_API_TOKENS_YML" -O /tmp/downloaded_api_tokens.yml
+    mv -f /tmp/downloaded_api_tokens.yml /app/api_tokens.yml
+fi
+
 echo "Starting tabbyAPI..."
 /app/restart.sh
 
