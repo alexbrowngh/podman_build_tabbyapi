@@ -31,10 +31,24 @@ chmod -v 644 /app/start.sh
 mv -v /app/start.sh /app/_start.sh
 ln -sfv /app/restart.sh /app/start.sh
 
-# Move config.yml to the persistent storage
-mv -v /app/config.yml /app/models
-if [ -n "${DEFAULT_CONFIG_YML}" ]; then
-    cp "${DEFAULT_CONFIG_YML}" /app/models/config.yml
+# Dowload the default config.yml to the persistent storage if DEFAULT_CONFIG_YML is set.
+if [ -n "$DEFAULT_CONFIG_YML" ]; then
+    # Download the .yml file
+    wget "$DEFAULT_CONFIG_YML" -O /tmp/downloaded_config.yml
+
+    # Move and overwrite the config file
+    mv -f /tmp/downloaded_config.yml /app/models/config.yml
+
+    # Download the model using model_downloader.sh
+    model_name=$(awk '/^model:/{f=1} f&&/model_name:/{print $2; exit}' /app/models/config.yml | tr -d '\r')
+    /app/model_downloader.sh "$model_name"
+
+    # Download the draft model using model_downloader.sh
+    draft_model_name=$(awk '/^draft_model:/{f=1} f&&/draft_model_name:/{print $2; exit}' /app/models/config.yml | tr -d '\r')
+    /app/model_downloader.sh "$draft_model_name"
+else
+    # If DEFAULT_CONFIG_YML doesn't exist, use the built-in config file
+    mv -v /app/config.yml /app/models
 fi
 ln -sfv /app/models/config.yml /app/config.yml
 
