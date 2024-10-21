@@ -40,11 +40,11 @@ if [ -n "$DEFAULT_CONFIG_YML" ]; then
     mv -f /tmp/downloaded_config.yml /app/models/config.yml
 
     # Download the model using model_downloader.sh
-    model_name=$(awk '/^model:/{f=1} f&&/model_name:/{print $2; exit}' /app/models/config.yml | tr -d '\r')
+    model_name=$(awk '/^model:/{f=1} f&&/^[^#]*model_name:/{print $2; exit}' /app/models/config.yml | tr -d '\r')
     /app/model_downloader.sh "$model_name"
 
     # Download the draft model using model_downloader.sh
-    draft_model_name=$(awk '/^draft_model:/{f=1} f&&/draft_model_name:/{print $2; exit}' /app/models/config.yml | tr -d '\r')
+    draft_model_name=$(awk '/^draft_model:/{f=1} f&&/^[^#]*draft_model_name:/{print $2; exit}' /app/models/config.yml | tr -d '\r')
     /app/model_downloader.sh "$draft_model_name"
 else
     # If DEFAULT_CONFIG_YML doesn't exist, use the built-in config file
