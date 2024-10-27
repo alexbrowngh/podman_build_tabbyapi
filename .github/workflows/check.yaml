@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # Use GITHUB_TOKEN instead of a custom secret
+          token: ${{ secrets.GHA_TABBYAPI_COMMIT_CHECK }}
       - name: Fetch latest commit checksum from GitHub API
         run: |
           curl -sL https://api.github.com/repos/theroyallab/tabbyAPI/commits | \
@@ -30,4 +30,4 @@ jobs:
           git commit -am "New commit checksum discovered"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GHA_TABBYAPI_COMMIT_CHECK }}
